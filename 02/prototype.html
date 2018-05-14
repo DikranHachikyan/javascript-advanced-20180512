@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        function User(fname='',lname='',mail=''){
+            //Данни на класа
+            //private
+            let firstName = upper(fname);
+            let lastName = upper(lname);
+            //public
+            this.mail = mail;
+            //Методи
+            //public
+            this.show = function(){
+                console.log(`${firstName} ${lastName} (${this.mail})`);
+            }
+            //private
+            function upper(text){
+                return text.toUpperCase();
+            }
+            console.log('Constructor User');
+        }
+
+        
+        //2. създаване на обект
+
+        let u = new User('John', 'Doe','j@no.com');
+
+        console.log(u);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
