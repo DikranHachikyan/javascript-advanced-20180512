@@ -1,0 +1,17 @@
+{
+  "name": "todo_app",
+  "version": "1.0.0",
+  "description": "todo web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "underscore": "^1.9.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.8.3"
+  }
+}
