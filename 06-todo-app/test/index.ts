@@ -1,33 +1,56 @@
 import {expect} from 'chai';
 import TodoModel from '../src/todo-model';
-import TodoCollection from '../src/todo-collection'
+import TodoCollection from '../src/todo-collection';
+
 // describe('simple test', ()=>{
-//     it('expect price to equal 12', ()=>{
+//     it('price should equal to 12', ()=>{
 //         let price=12;
+
 //         expect(price).to.equal(12);
 //     });
-
-//     it('expect object to have property title', ()=>{
-//         let ob = {title:'Chai JS'};
-//         expect(ob).to.have.property('title');
+//     let product = {name:'IPhone'};
+//     it('should be an object', ()=>{
+//         expect(product).to.be.an('object');
 //     });
+//     it('should have property name of type string', ()=>{
+//         expect(product).to.have.property('name');
+//         expect(product['name']).to.be.a('string');
+//     });
+
 // });
 
-describe('Todo Model Test', ()=>{
-    it('expect to return todo model object', ()=>{
-        const newTodo = TodoModel(1, 'Read Typescript API');
+describe('TodoModel Object', ()=>{
+        const newTodo = TodoModel(1,'read docs');
+
+    it('should return todo item with id, title, completed', ()=>{
+        expect(newTodo).to.have.property('id');
+        expect(newTodo).to.have.property('title');
+        expect(newTodo).to.have.property('completed');
+    });
+
+    it('should return an object {1,"read docs",false}', ()=>{
         expect(newTodo).to.eql({
             id:1,
-            title:'Read Typescript API',
-            completed: false
+            title:'read docs',
+            completed:false
         });
     });
 });
 
-describe('Todo Collection Test', ()=>{
-    it('expect to have 3 items', ()=>{
-        const newTodoCollection = TodoCollection('write 500 words', 'read book', 'learn js');
-        expect(newTodoCollection.get().length).to.equal(3);
+describe('Todo Collection', ()=>{
+    const newTodoCollection = TodoCollection('read','write','learn');
 
+    it('should be an object',()=>{
+        expect(newTodoCollection).to.be.an('object');
     });
+
+    it('should return an array of objects',()=>{
+        expect(newTodoCollection['get']()).to.be.an('array');
+    });
+
+    it('should return an array of 3 items',()=>{
+        expect(newTodoCollection['get']().length).to.equal(3);
+    });
+
+
 });
