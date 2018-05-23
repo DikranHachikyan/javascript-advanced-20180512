@@ -1,4 +1,4 @@
-const todoModel = (id:number, title:string, completed:boolean=false):object=>{
+const todoModel = (id:number, title:string, completed:boolean=false)=>{
     return {
         id, 
         title, 

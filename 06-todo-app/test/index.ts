@@ -45,12 +45,40 @@ describe('Todo Collection', ()=>{
     });
 
     it('should return an array of objects',()=>{
-        expect(newTodoCollection['get']()).to.be.an('array');
+        expect(newTodoCollection.get()).to.be.an('array');
     });
 
     it('should return an array of 3 items',()=>{
-        expect(newTodoCollection['get']().length).to.equal(3);
+        expect(newTodoCollection.get().length).to.equal(3);
     });
 
+    it('should return item with id 2',()=>{
+        const item2 = newTodoCollection.getItemById(2);
+        expect(item2).to.eql({
+            id:2,
+            title:'write',
+            completed:false
+        });
+    });
 
+    it('should add new todo', ()=>{
+        const oldItems = newTodoCollection.get();
+        newTodoCollection.add('create app');
+        expect(newTodoCollection.get().length).to.equal(oldItems.length + 1)
+    });
+
+    it('should remove todo', ()=>{
+        const oldItems = newTodoCollection.get();
+        newTodoCollection.remove(2);
+        expect(newTodoCollection.get().length).to.equal(oldItems.length - 1);
+    });
+
+    it('should toggle completed', ()=>{
+        newTodoCollection.toggleCompleted(1);
+        expect(newTodoCollection.getItemById(1)).to.eql({
+            id:1,
+            title:'read',
+            completed:true
+        })
+    });
 });
