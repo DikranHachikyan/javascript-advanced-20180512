@@ -10,7 +10,7 @@ const todoCollection = (...titleArr:string[])=>{
     };
 
     const add = (title:string):void =>{
-        const id = collection.length;
+        const id = collection.length+1;
         collection = [...collection, TodoModel(id, title)]; 
     };
 
