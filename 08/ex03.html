@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI</title>
+</head>
+<body>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.5/Rx.min.js"></script>
+    <script>
+        const stream = Rx.Observable.interval(500); //500ms
+
+        stream
+            .filter(value=>(value % 2) === 0)
+            .map((value)=>value * 10 )
+            .subscribe((value=>console.log(value)));
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI</title>
+</head>
+<body>
+    <div>
+        <div>Height (cm) <span id="height-value">130</span></div>
+        <div>
+            <input type="range" min="120" max="190" value="130" id="height-input">
+        </div>
+    </div>
+    <div>
+        <div>Weight (kg) <span id="weight-value">60</span></div>
+        <div>
+            <input type="range" min="50" max="120" value="60" id="weight-input">
+        </div>
+    </div>
+    <div>
+        BMI <span id="bmi">35.50</span>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.5/Rx.min.js"></script>
+    <script>
+        const height = Rx.Observable
+                            .fromEvent(document.querySelector('#height-input'),'input')
+                            .map((event)=>parseInt(event.target.value))
+                            .startWith(parseInt(document.querySelector('#height-input').value));
+                            //.subscribe(value=>console.log(`h:${value}`));
+        const weight = Rx.Observable
+                            .fromEvent(document.querySelector('#weight-input'),'input')
+                            .map((event)=>parseInt(event.target.value))
+                            .startWith(parseInt(document.querySelector('#weight-input').value));
+                            //.subscribe(value=>console.log(`w:${value}`));
+        const combined = Rx.Observable
+                            .combineLatest(height,weight,(h,w)=>{
+                                return (w/(h/100)**2).toFixed(2);
+                            });
+        combined.subscribe((value)=>document.querySelector('#bmi').innerHTML = value);
+
+        height.subscribe((value)=>document.querySelector('#height-value').innerHTML = value);
+        weight.subscribe((value)=>document.querySelector('#weight-value').innerHTML = value);
+    </script>
+</body>
+</html>

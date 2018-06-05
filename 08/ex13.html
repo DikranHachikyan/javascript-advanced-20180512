@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI</title>
+</head>
+<body>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.5/Rx.min.js"></script>
+    <script>
+        //1,2,3,4,5,6,7
+        const streamA = Rx.Observable.interval(100)
+                                     .take(10);
+                                     
+        const stream3 = streamA
+                            .filter((value)=>value % 2 === 0)
+                            .map((value)=>{
+                                if(value === 4) throw new Error('invalid value');
+                                return value;
+                            })
+                            .subscribe((value)=>console.log(`filter:${value}`),
+                                       (err)=>console.log(`error:${err}`),
+                                       ()=>console.log('completed!'));                              
+        
+        //streamA
+    </script>
+</body>
+</html>

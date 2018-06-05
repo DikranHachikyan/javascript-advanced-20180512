@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI</title>
+</head>
+<body>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.5/Rx.min.js"></script>
+    <script>
+        //1,2,3,4,5,6,7
+        const streamA = Rx.Observable.interval(100)
+                                     .take(5)
+                                     .repeat(2) //100ms
+                                     .map((value)=>value * 2);
+                                     //.subscribe(value=>console.log(value));                             
+
+        //const streamB = Rx.Observable.interval(100);
+                                                                  
+        //const output  = streamA.concat(streamB);
+
+        streamA
+            .subscribe(value=>console.log(value));                             
+        
+        //streamA
+    </script>
+</body>
+</html>
