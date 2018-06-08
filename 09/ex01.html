@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #draggable {
+            border: 1px solid red;
+            width: 80px;
+            height: 80px;
+            background-color: blue;
+            cursor: move;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="draggable"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.5/Rx.min.js"></script>
+    <script>
+        const draggable = document.querySelector('#draggable');
+
+        const mouseDown = Rx.Observable
+                                .fromEvent(draggable,'mousedown');
+        const mouseMove = Rx.Observable
+                                .fromEvent(draggable,'mousemove');
+        const mouseUp   = Rx.Observable
+                                .fromEvent(draggable, 'mouseup');
+
+        const mouseDrag = mouseDown
+                             .flatMap( (event)=>{
+                                let startX = event.offsetX;
+                                let startY = event.offsetY;
+                                //console.log(`startX:${startX} startY:${startY}`);
+                                console.log(event);
+                                return mouseMove
+                                            .map((event)=>{
+                                                //console.log(`clientX:${event.clientX} clientY:${event.clientY}`);
+                                                return {
+                                                    top: event.clientY - startY,
+                                                    left: event.clientX - startX 
+                                                }; //return
+                                            })
+                                            .takeUntil(mouseUp);//map
+                             });//flat map
+        mouseDrag
+            .subscribe((position)=>{
+                draggable.style.top = position.top + 'px';
+                draggable.style.left = position.left + 'px';
+            })
+        //mouseDown.subscribe((event)=>console.log(`mouse down:${event}`));
+        //mouseMove.subscribe((event)=>console.log(`mouse move:${event}`));
+    </script>
+</body>
+</html>

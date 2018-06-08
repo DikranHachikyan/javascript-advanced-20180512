@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="draggable"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.5/Rx.min.js"></script>
+    <script>
+        const values = Rx.Observable
+                            .from([
+                                Rx.Observable.of(1,2,3),
+                                Rx.Observable.of(4,5,6,7),
+                                Rx.Observable.from([
+                                        Rx.Observable.of(8,9),
+                                        Rx.Observable.of(10,11)
+                                    ])
+                            ]);
+        values
+            .flatMap(obs=>obs)
+            .subscribe(val => console.log(val));
+    </script>
+</body>
+</html>

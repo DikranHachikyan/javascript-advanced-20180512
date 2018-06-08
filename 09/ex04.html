@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="draggable"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.5/Rx.min.js"></script>
+    <script>
+        const streamA = Rx.Observable
+                            .interval(1000)
+                            .skip(5)
+                            .map((value)=>value*100)
+                            .take(1);
+        const streamB = Rx.Observable
+                            .interval(1000)
+                            //.takeUntil(streamA)
+                            //.skipUntil(streamA)
+                            .takeWhile((value,index)=>{
+                                console.log(`take while:${value} ${index}`);
+                                return value < 10;
+                            });
+
+        const ret = streamB
+                        .subscribe((value)=>console.log(`streamB:${value}`));
+        streamA
+            .subscribe((value)=>console.log(`streamA:${value}`));
+
+        
+    </script>
+</body>
+</html>

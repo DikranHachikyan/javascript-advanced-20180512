@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="draggable"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.5/Rx.min.js"></script>
+    <script>
+       const interval2s = Rx.Observable
+                                .interval(5000);
+       const responseObs = Rx.Observable
+                                .fromPromise(
+                                    fetch('https://www.googleapis.com/books/v1/volumes?q=javascript')
+                                    .then(response=>response.json())
+                                );
+       interval2s
+            .flatMap((x)=>responseObs)
+            .subscribe((data)=>console.log(data));                         
+        
+    </script>
+</body>
+</html>

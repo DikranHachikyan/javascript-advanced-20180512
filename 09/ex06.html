@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Лога на фирми</h1>
+                <div class="form-group">
+                    <label for="search-box">Фирма</label>
+                    <input type="text" id="search-box" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <ul id="list" class="list-group"></ul>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.5.5/Rx.min.js"></script>
+    <script>
+      const keyUp = Rx.Observable
+                            .fromEvent(document.querySelector('#search-box'), 'keyup')
+                            .map((event)=>{
+                                let companyName = event.target.value;
+
+                                return companyName;
+                            })
+                            .filter((companyName)=>{
+                                const length = companyName.trim().length;
+                                if( length < 3){
+                                    document.querySelector('#list').innerHTML = ''; 
+                                    return false;
+                                }
+                                return true;
+                            })
+                            .flatMap((companyName)=>{
+                                return Rx.Observable
+                                            .fromPromise(
+                                                fetch(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${companyName}`)
+                                                .then(response=>response.json())
+                                            );
+                            })
+                            .subscribe((companies)=>{
+                                //console.log(value);
+                                render(companies);
+                            });
+     function render(companies){
+        document.querySelector('#list').innerHTML = '';
+        for( let company of companies){
+            let li$ = `<li class="list-group-item">
+                <h2>${company.name}</h2>
+                <img src="${company.logo}" class="img-responsive img-thumbnail" alt="" />
+                <a href="http://${company.domain}">${company.name}</a>
+            </li>`;
+            document.querySelector('#list').innerHTML += li$;
+        }
+     }
+    </script>
+</body>
+</html>
