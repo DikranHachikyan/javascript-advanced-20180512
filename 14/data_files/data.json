@@ -1,0 +1,50 @@
+[
+    {
+      "category":"alternative",
+      "description" : "Laboriosam consequuntur tempore quos enim.",
+      "thumbnail" : "images/alternative-category150x150.png",
+      "title" : "Alternative"
+    },
+     {
+      "category":"dance",
+      "description" : "Tempore illo eos cum placeat id fugiat.",
+      "thumbnail" : "images/dance-category150x150.png",
+      "title" : "Dance"
+    },
+     {
+      "category": "electronica",
+      "description" : "Numquam quos molestiae consequuntur.",
+      "thumbnail" : "images/electronica-category150x150.png",
+      "title" : "Electronica"
+    },
+     {
+      "category":"folk",
+      "description" : "Dicta ea delectus ad exercitationem magni.",
+      "thumbnail" : "images/folk-category150x150.png",
+      "title" : "Folk"
+    },
+    {
+      "category":"indie",
+      "description" : "A, distinctio praesentium est?.",
+      "thumbnail" : "images/indie-category150x150.png",
+      "title" : "Indie"
+    },
+    {
+      "category":"other",   
+      "description" : "Repellat necessitatibus quas maxime eos.",
+      "thumbnail" : "images/other-category150x150.png",
+      "title" : "Other"
+    },
+    {
+      "category":"pop",
+      "description" : "Lorem ipsum dolor sit amet, consectetur.",
+      "thumbnail" : "images/pop-category150x150.png",
+      "title" : "Pop"
+    },
+    {
+      "category":"rock",
+      "description" : "Cumque id, officiis fugiat hic sit tempora.",
+      "thumbnail" : "images/rock-category150x150.png",
+      "title" : "Rock"
+    }
+]
