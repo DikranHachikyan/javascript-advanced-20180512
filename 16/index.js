@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 
 import {routes} from './src/routes';
 
@@ -9,6 +10,11 @@ const HOST = '127.0.0.1';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+
+//Mongoose
+mongoose.Promise = Promise;
+mongoose.connect('mongodb://localhost/contacts');
+
 
 //Middleware
 // app.use('/blog/',(req,res,next)=>{
