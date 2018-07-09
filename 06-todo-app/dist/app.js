@@ -120,7 +120,7 @@ var todosListView = function ($el) {
         var $list = todoCollection.get().map(function (todo) {
             return todo_view_1["default"](todo).render();
         }).join('');
-        $el.innerHTML = "<ul>" + $list + "</ul>";
+        $el.innerHTML = "<ul class=\"list-group\">" + $list + "</ul>";
         attachEvents();
     };
     var attachEvents = function () {

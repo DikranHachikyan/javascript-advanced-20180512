@@ -8,7 +8,7 @@ const todosListView = ($el, ...titleArr:string[])=>{
         const $list = todoCollection.get().map((todo)=>{
             return TodoView(todo).render();
         }).join('');
-        $el.innerHTML = `<ul>${$list}</ul>`;
+        $el.innerHTML = `<ul class="list-group">${$list}</ul>`;
         attachEvents();
     };
 

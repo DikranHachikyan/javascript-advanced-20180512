@@ -1,26 +1,31 @@
+import {addNewContact,
+        getContacts,
+        updateContact,
+        deleteContact } from '../controllers';
 
 export const routes = (app)=>{
     //GET: четене на данни
     app.route('/contact')
        .get((req,res,next)=>{
-            res.send(`Get all contacts ${req.url} ${req.method}`);
+            console.log(`Get all contacts ${req.url} ${req.method}`);
             next();
-       })
+       }, getContacts)
     //POST: добавяне на нови записи
        .post((req,res,next)=>{
-            res.send(`Add New Contact: ${JSON.stringify(req.body)}`)
+            console.log(`Add New Contact: ${JSON.stringify(req.body)}`)
             next();
-       });
+       }, 
+       addNewContact);
     
     //PUT: промяна на съществуващи записи
     app.route('/contact/:contactId')
        .put((req,res,next)=>{
-            res.send(`Update Contact Id:${req.params.contactId}`);
+            console.log(`Update Contact Id:${req.params.contactId}`);
             next();
-       })
+       }, updateContact)
     //DELETE: изтриване на записи
        .delete((req,res,next)=>{
-            res.send(`Delete Contact Id:${req.params.contactId}`);
+            console.log(`Delete Contact Id:${req.params.contactId}`);
             next();
-       });
+       },deleteContact);
 };

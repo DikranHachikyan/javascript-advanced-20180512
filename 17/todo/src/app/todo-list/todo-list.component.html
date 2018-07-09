@@ -1,0 +1,23 @@
+  <div class="d-block form-inline text-center mt-3 mb-3">
+    <input type="text" 
+           class="form-control d-inline-block" 
+           placeholder="New Todo Item"
+           #todoTitle>
+    <button class="btn btn-primary"
+            (click)="addNewTodoItem(todoTitle)">Add</button>
+    <a routerLink="/removed"
+       class="btn btn-primary" >Archive</a>
+  </div>
+
+  <ul class="list-group">
+      <li *ngFor="let item of items" class="list-group-item">
+        <input type="checkbox"
+               [checked]="item.completed"
+               (change)="toggleCompleted(item.id)"
+               >
+        <span class="w-100">{{item.title}}</span>
+         <button class="close text-danger"
+                 (click)="removeItem(item.id)">&times;</button> 
+      </li>
+  </ul>
+ 
