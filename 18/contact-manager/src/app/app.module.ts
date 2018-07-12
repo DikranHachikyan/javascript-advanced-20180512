@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
-import { StaticDatasourceService} from './models/static-datasource.service'
+import { StaticDatasourceService} from './models/static-datasource.service';
+import { ContactDetailsComponent } from './contact-details/contact-details.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContactListComponent
+    ContactListComponent,
+    ContactDetailsComponent
   ],
   imports: [
     BrowserModule

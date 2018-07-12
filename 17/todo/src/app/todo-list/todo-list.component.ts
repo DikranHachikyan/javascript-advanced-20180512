@@ -14,7 +14,7 @@ items:TodoItem[];
 
   ngOnInit():void{
     console.log('init component');
-    this.todoItemsService.getTodoItems()
+    this.todoItemsService.getTodoItems();
                          .subscribe( (todoItems)=>this.items = todoItems,
                                      (error)=>console.log(error),
                                      ()=>console.log('todo items loaded'));

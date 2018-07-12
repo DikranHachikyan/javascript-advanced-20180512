@@ -1,6 +1,13 @@
-<ul class="list-group">
-    <li *ngFor="let contact of contacts"
-        class="list-group-item">
+<div class="list-group">
+    <a *ngFor="let contact of contacts"
+        class="list-group-item"
+        (click)="onSelectContact(contact.id)"
+        [class.active]="contact === selectedContact">
         {{contact.firstName}} {{contact.lastName}} 
-    </li>
-</ul>
+    </a>
+</div>
+<app-contact-details
+   *ngIf="selectedContact"
+   [selected-contact]="selectedContact"
+   (childEvent)="fromChildComponent()">
+</app-contact-details>

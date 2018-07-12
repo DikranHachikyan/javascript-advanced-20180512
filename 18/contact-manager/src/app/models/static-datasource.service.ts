@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/from';
 
 import {Contact} from './contact';
 
@@ -46,5 +47,11 @@ export class StaticDatasourceService {
 
   getContactList():Observable<Contact[]>{
     return Observable.of(contacts);
+  }
+
+  getContactById(id:number):Observable<Contact>{
+    let contact:Contact = contacts.filter((contact)=>contact.id === id).pop();
+    //return Observable.of(contact);
+    return Observable.from([contact]);
   }
 }

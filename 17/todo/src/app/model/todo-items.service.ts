@@ -25,6 +25,7 @@ export class TodoItemsService {
   getTodoItems():Observable<TodoItem[]>{
     return Observable.of(todoItems);
     //return of(todoItems);
+    //return todoItems;
   }
 
   toggleCompleted(id:number):void{

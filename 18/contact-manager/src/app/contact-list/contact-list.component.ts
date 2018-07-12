@@ -9,6 +9,7 @@ import { Contact } from '../models/contact';
 })
 export class ContactListComponent implements OnInit {
   contacts:Contact[];
+  selectedContact:Contact;
     
   constructor(private dataSource:StaticDatasourceService) { }
 
@@ -19,4 +20,17 @@ export class ContactListComponent implements OnInit {
                               ()=>console.log('contact list loaded'));
   }
 
+  onSelectContact(id:number):void{
+    this.dataSource.getContactById(id)
+                      .subscribe((contact)=>{
+                                  console.log(contact);
+                                  this.selectedContact = contact;
+                                  },
+                                 (err)=>console.log(err),
+                                 ()=>console.log('contact loaded'));
+  }
+
+  fromChildComponent():void{
+    console.log(`From Child`);
+  }
 }
