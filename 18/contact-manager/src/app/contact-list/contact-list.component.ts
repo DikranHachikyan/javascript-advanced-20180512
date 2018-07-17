@@ -30,6 +30,10 @@ export class ContactListComponent implements OnInit {
                                  ()=>console.log('contact loaded'));
   }
 
+  deleteContact(event, id:number):void{
+    event.stopPropagation();
+    this.dataSource.deleteContact(id);
+  }
   fromChildComponent():void{
     console.log(`From Child`);
   }

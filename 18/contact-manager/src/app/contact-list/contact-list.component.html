@@ -1,13 +1,38 @@
-<div class="list-group">
-    <a *ngFor="let contact of contacts"
-        class="list-group-item"
-        (click)="onSelectContact(contact.id)"
-        [class.active]="contact === selectedContact">
-        {{contact.firstName}} {{contact.lastName}} 
-    </a>
+<div class="row">
+    <div class="col-sm-8">
+        <h1>{{title}}</h1>
+        <div class="list-group">
+            <a *ngFor="let contact of contacts"
+                class="list-group-item list-group-item-action"
+                (click)="onSelectContact(contact.id)"
+                [class.active]="contact === selectedContact">
+                <button class="close ml-5 text-danger p-1"
+                        (click)="deleteContact($event,contact.id)">
+                    &times;
+                </button>
+                <h4>
+                    {{contact.firstName}} {{contact.lastName}} 
+                    <small class="text-muted float-right">
+                        {{contact.created|date:format:'dd.MM.yyyy'}}
+                    </small>
+                </h4>
+                <p>
+                    <span class="badge badge-success">
+                        {{contact.email}}
+                    </span>
+                    <span class="badge badge-primary"
+                          *ngIf="contact.phone">
+                        {{contact.phone}}
+                    </span>
+                </p>
+            </a>
+        </div>
+    </div>
+    <div class="col-sm-4"  
+         *ngIf="selectedContact">
+        <app-contact-details
+           [selected-contact]="selectedContact"
+           (childEvent)="fromChildComponent()">
+        </app-contact-details>
+    </div>
 </div>
-<app-contact-details
-   *ngIf="selectedContact"
-   [selected-contact]="selectedContact"
-   (childEvent)="fromChildComponent()">
-</app-contact-details>

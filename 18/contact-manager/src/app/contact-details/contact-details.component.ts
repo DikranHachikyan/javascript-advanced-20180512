@@ -5,6 +5,7 @@ import { Component,
          EventEmitter } from '@angular/core';
 
 import { Contact } from '../models/contact';
+import { StaticDatasourceService } from '../models/static-datasource.service';
 
 @Component({
   selector: 'app-contact-details',
@@ -14,12 +15,12 @@ import { Contact } from '../models/contact';
 export class ContactDetailsComponent implements OnInit {
   @Input('selected-contact') contact:Contact;
   @Output('childEvent') btnClicked:EventEmitter<any> = new EventEmitter();  
-  constructor() { }
+  constructor(private dataSource:StaticDatasourceService){ }
 
-  buttonClicked():void {
-    this.btnClicked.emit()
-  }
   ngOnInit() {
   }
 
+  saveContact():void{
+    this.dataSource.saveContact(this.contact);
+  }
 }

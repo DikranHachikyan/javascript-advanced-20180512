@@ -1,4 +1,71 @@
-<h3>Contact Details:{{contact.firstName}} {{contact.lastName}}</h3>
-
-<button
- (click)="buttonClicked()">Test</button>
+<h3>Contact Details</h3>
+<form #detailsForm="ngForm">
+    <div class="form-group">
+        <label>
+            First Name
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text"
+               placeholder="First Name"
+               class="form-control"
+               required
+               name="first"
+               #firstName="ngModel"
+               [(ngModel)]="contact.firstName">
+    </div>
+    <div class="text-danger"
+         [hidden]="firstName.valid || firstName.pristine">
+        Required Field
+    </div>
+    <div class="form-group">
+        <label>
+            Last Name
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text"
+               placeholder="Last Name"
+               class="form-control"
+               required
+               name="last"
+               #lastName="ngModel"
+               [(ngModel)]="contact.lastName">
+    </div>
+    <div class="text-danger"
+         [hidden]="lastName.valid || lastName.pristine">
+        Required Field
+    </div>
+    <div class="form-group">
+        <label>
+            E-mail
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text"
+               placeholder="E-mail"
+               class="form-control"
+               required
+               name="email"
+               #email="ngModel"
+               [(ngModel)]="contact.email">
+    </div>
+    <div class="text-danger"
+         [hidden]="email.valid || email.pristine">
+        Required Field
+    </div>
+    <div class="form-group">
+        <label>
+            Phone
+            <span class="text-danger">*</span>
+        </label>
+        <input type="text"
+               placeholder="Phone"
+               class="form-control"
+               name="phone"
+               #phone="ngModel"
+               [(ngModel)]="contact.phone">
+    </div>
+    <button class="btn btn-primary"
+            [disabled]="detailsForm.form.pristine || !detailsForm.form.valid"
+            (click)="saveContact()">
+        Save
+    </button>
+</form>

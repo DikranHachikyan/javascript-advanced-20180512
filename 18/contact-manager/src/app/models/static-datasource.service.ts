@@ -54,4 +54,19 @@ export class StaticDatasourceService {
     //return Observable.of(contact);
     return Observable.from([contact]);
   }
+
+  deleteContact(id:number):void{
+    //console.log(`delete id:${id}`);
+    contacts.splice(contacts.findIndex((contact)=>contact.id === id), 1);
+    //console.log(contacts);
+  }
+
+  saveContact(contact:Contact):void{
+    contacts.forEach( (cont)=>{
+      if(cont.id === contact.id){
+        cont = contact;
+      }
+    });
+    //console.log(contacts);
+  }
 }
