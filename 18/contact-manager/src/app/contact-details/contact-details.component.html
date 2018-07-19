@@ -1,4 +1,9 @@
 <h3>Contact Details</h3>
+<button class="btn btn-success"
+        *ngIf="addNewMode"
+        (click)="goBack()">
+  Back          
+</button>
 <form #detailsForm="ngForm">
     <div class="form-group">
         <label>

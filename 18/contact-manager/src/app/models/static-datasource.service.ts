@@ -1,72 +1,79 @@
-import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/from';
+// import { Injectable } from '@angular/core';
+// import {Observable} from 'rxjs/Observable';
+// import 'rxjs/add/observable/of';
+// import 'rxjs/add/observable/from';
 
-import {Contact} from './contact';
+// import {Contact} from './contact';
 
-const contacts:Contact[] = [
- {
-    id:11,
-    firstName: 'John',
-    lastName:'Doe',
-    email:'john@no.com',
-    phone:'111-22-33',
-    created: Date.now()
-  },
-  {
-    id:12,
-    firstName: 'Anna',
-    lastName:'Smith',
-    email:'anna@no.com',
-    phone:'333-22-33',
-    created: Date.now()
-  },
- {
-    id:13,
-    firstName: 'Peter',
-    lastName:'Thomas',
-    email:'peter@no.com',
-    phone:'444-22-33',
-    created: Date.now()
-  },
- {
-    id:14,
-    firstName: 'Maria',
-    lastName:'Anders',
-    email:'maria@no.com',
-    phone:'555-44-33',
-    created: Date.now()
-  }
-];
+// const contacts:Contact[] = [
+//  new Contact(
+//     11,
+//     'John',
+//     'Doe',
+//     'john@no.com',
+//     '111-22-33',
+//      Date.now()
+//   ),
+//   new Contact(
+//     12,
+//     'Anna',
+//     'Smith',
+//     'anna@no.com',
+//     '333-22-33',
+//      Date.now()
+//   ),
+//  new Contact(
+//     13,
+//     'Peter',
+//     'Thomas',
+//     'peter@no.com',
+//     '444-22-33',
+//      Date.now()
+//   ),
+//  new Contact(
+//     14,
+//     'Maria',
+//     'Anders',
+//     'maria@no.com',
+//     '555-44-33',
+//      Date.now()
+//   )
+// ];
 
-@Injectable()
-export class StaticDatasourceService {
+// @Injectable()
+// export class StaticDatasourceService {
 
-  constructor() { }
+//   constructor() { }
 
-  getContactList():Observable<Contact[]>{
-    return Observable.of(contacts);
-  }
+//   getContactList():Observable<Contact[]>{
+//     return Observable.of(contacts);
+//   }
 
-  getContactById(id:number):Observable<Contact>{
-    let contact:Contact = contacts.filter((contact)=>contact.id === id).pop();
-    //return Observable.of(contact);
-    return Observable.from([contact]);
-  }
+//   getContactById(id:number):Observable<Contact>{
+//     let contact:Contact = contacts.filter((contact)=>contact.id === id).pop();
+//     //return Observable.of(contact);
+//     return Observable.from([contact]);
+//   }
 
-  deleteContact(id:number):void{
-    //console.log(`delete id:${id}`);
-    contacts.splice(contacts.findIndex((contact)=>contact.id === id), 1);
-    //console.log(contacts);
-  }
+//   deleteContact(id:number):void{
+//     //console.log(`delete id:${id}`);
+//     contacts.splice(contacts.findIndex((contact)=>contact.id === id), 1);
+//     //console.log(contacts);
+//   }
 
-  saveContact(contact:Contact):void{
-    contacts.forEach( (cont)=>{
-      if(cont.id === contact.id){
-        cont = contact;
-      }
-    });
-    //console.log(contacts);
-  }
-}
+//   saveContact(contact:Contact):void{
+//     if( contact.id){
+//       contacts.forEach( (cont)=>{
+//         if(cont.id === contact.id){
+//           cont = contact;
+//         }
+//       });
+//     }
+//     else{
+//       contact.id = contacts[contacts.length - 1].id + 1;
+//       contact.created = Date.now();
+//       contacts.push(contact);  
+//       console.log(contacts);
+//     }
+//   }
+// }

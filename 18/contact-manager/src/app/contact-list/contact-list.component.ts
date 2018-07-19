@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StaticDatasourceService} from '../models/static-datasource.service';
+import { ContactService} from '../models/contact.service';
 import { Contact } from '../models/contact';
 
 @Component({
@@ -10,17 +10,22 @@ import { Contact } from '../models/contact';
 export class ContactListComponent implements OnInit {
   contacts:Contact[];
   selectedContact:Contact;
+  title:string = 'Contact Manager';
     
-  constructor(private dataSource:StaticDatasourceService) { }
+  constructor(private dataSource:ContactService) { }
 
   ngOnInit() {
+    this.getContacts();
+  }
+
+  getContacts():void{
     this.dataSource.getContactList()
                    .subscribe((list)=>this.contacts = list,
                               (err)=>console.log(err),
                               ()=>console.log('contact list loaded'));
   }
 
-  onSelectContact(id:number):void{
+  onSelectContact(id:string):void{
     this.dataSource.getContactById(id)
                       .subscribe((contact)=>{
                                   console.log(contact);
@@ -30,9 +35,15 @@ export class ContactListComponent implements OnInit {
                                  ()=>console.log('contact loaded'));
   }
 
-  deleteContact(event, id:number):void{
+  deleteContact(event, id:string):void{
     event.stopPropagation();
-    this.dataSource.deleteContact(id);
+    this.dataSource.deleteContact(id)
+                   .subscribe( (status)=>{
+                      console.log(status)
+                      this.getContacts();
+                   },
+                   (err)=>console.log(err),
+                   ()=>console.log('contact deleted'));
   }
   fromChildComponent():void{
     console.log(`From Child`);

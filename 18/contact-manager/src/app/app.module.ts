@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
-import { StaticDatasourceService} from './models/static-datasource.service';
+
+import { ContactService } from './models/contact.service';
 import { ContactDetailsComponent } from './contact-details/contact-details.component'
 import { ContactsRoutingModule } from './contacts-routing/contacts-routing.module';
 
@@ -16,10 +18,11 @@ import { ContactsRoutingModule } from './contacts-routing/contacts-routing.modul
   ],
   imports: [
     BrowserModule,
-    FormsModule, 
+    FormsModule,
+    HttpClientModule, 
     ContactsRoutingModule
   ],
-  providers: [StaticDatasourceService],
+  providers: [ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,13 +1,17 @@
 <div class="row">
     <div class="col-sm-8">
         <h1>{{title}}</h1>
+        <a class="btn btn-success m-4"
+           routerLink="/add-new">
+           Add New
+        </a>
         <div class="list-group">
             <a *ngFor="let contact of contacts"
                 class="list-group-item list-group-item-action"
-                (click)="onSelectContact(contact.id)"
+                (click)="onSelectContact(contact._id)"
                 [class.active]="contact === selectedContact">
                 <button class="close ml-5 text-danger p-1"
-                        (click)="deleteContact($event,contact.id)">
+                        (click)="deleteContact($event,contact._id)">
                     &times;
                 </button>
                 <h4>
@@ -32,7 +36,7 @@
          *ngIf="selectedContact">
         <app-contact-details
            [selected-contact]="selectedContact"
-           (childEvent)="fromChildComponent()">
+           (contactUpdated)="getContacts()">
         </app-contact-details>
     </div>
 </div>
